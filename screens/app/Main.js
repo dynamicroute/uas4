@@ -15,6 +15,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 export default function MainScreen() {
   const [textInput, setTextInput] = React.useState("");
   const [todos, setTodos] = React.useState([]);
+
+  //Search Function
   const [dataFromState, setData] = React.useState(todos);
 
   const searchName = (input) => {
@@ -157,8 +159,8 @@ export default function MainScreen() {
         paddingVertical: 40,
       }}
     >
-      <View>
-        {/* <Text
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text
           style={{
             fontSize: 35,
             fontWeight: "500",
@@ -166,8 +168,32 @@ export default function MainScreen() {
             letterSpacing: 2,
           }}
         >
-          BINUS APP
-        </Text> */}
+          BINUS TODO APP
+        </Text>
+        <View
+          style={{
+            width: "100%",
+            // marginBottom: 20,
+            position: "absolute",
+            alignItems: "flex-end",
+          }}
+        >
+          <TouchableOpacity
+            onPress={clearTodos}
+            style={{
+              height: 30,
+              backgroundColor: "#CF0A0A",
+              width: 80,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 5,
+            }}
+          >
+            <Text style={{ color: "#FFF", fontWeight: "400", fontSize: 12 }}>
+              Delete All
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View
         style={{
@@ -186,7 +212,9 @@ export default function MainScreen() {
           style={{
             borderRadius: 12,
             shadowColor: "transparent",
-            backgroundColor: "#EEEEEE",
+            // backgroundColor: "#EEEEEE",
+            borderColor: "#EEEEEE",
+            borderWidth: 2,
             width: "80%",
             height: 50,
           }}
@@ -194,7 +222,9 @@ export default function MainScreen() {
         <TouchableOpacity
           style={{
             width: "15%",
-            backgroundColor: "#EEEEEE",
+            // backgroundColor: "#EEEEEE",
+            borderColor: "#EEEEEE",
+            borderWidth: 2,
             height: 50,
             borderRadius: 12,
             justifyContent: "center",
@@ -204,13 +234,31 @@ export default function MainScreen() {
           <Icon name="sort" size={20} color="#6D6D64" />
         </TouchableOpacity>
       </View>
-      <View style={{ width: "100%", alignItems: "flex-end", marginBottom: 20 }}>
-        <TouchableOpacity onPress={clearTodos}>
-          <Text style={{ color: "#CF0A0A", fontWeight: "bold" }}>
+      {/* <View style={{ width: "100%", alignItems: "flex-end", marginBottom: 20 }}>
+        <TouchableOpacity
+          onPress={clearTodos}
+          style={{
+            height: 40,
+            backgroundColor: "#CF0A0A",
+            width: 120,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 5,
+          }}
+        >
+          <Text style={{ color: "#FFF", fontWeight: "bold" }}>
             Delete All Todo
           </Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
+      <View
+        style={{
+          backgroundColor: "#EEEEEE",
+          width: "100%",
+          height: 1,
+          marginBottom: 20,
+        }}
+      ></View>
       <FlatList
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{}}
@@ -224,8 +272,6 @@ export default function MainScreen() {
           position: "absolute",
           bottom: 20,
           marginLeft: 30,
-          // marginBottom: 30,
-          // height: "100%",
           width: "100%",
         }}
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -234,6 +280,7 @@ export default function MainScreen() {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
+            marginTop: 20,
           }}
         >
           <TextInput
@@ -250,7 +297,6 @@ export default function MainScreen() {
               height: 50,
               width: "80%",
               backgroundColor: "#EEEEEE",
-              // paddingVertical: 10,
               marginBottom: 10,
             }}
           ></TextInput>
